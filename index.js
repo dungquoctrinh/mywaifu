@@ -33,12 +33,20 @@ app.post('/webhook/', function (req, res) {
         sender = event.sender.id
         if (event.message && event.message.text) {
             text = event.message.text
-            sendTextMessage(sender, "You are right")
+            if (text === 'Generic') {
+                sendGenericMessage(sender)
+                continue
+            }
+            sendTextMessage(sender, "You will be fine")
+        }
+        if (event.postback) {
+            text = JSON.stringify(event.postback)
+            sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
+            continue
         }
     }
     res.sendStatus(200)
 })
-
 var token = "CAAYVF0qHSREBACt4d7WAZA2LzokCvvUyeZCZBimCGwVXxtx3ruh5dIXAh4O3YbXTGGD6j3CmmhplpFs90nIzBQlUX8oSj6OMwOpXNRRPfJZB7kupY7dQ4ZCkTayb9xoxWqK89CBCTv52gaTc5YykFvuNdKWL76uJ0I659OsVX2pMMrixaLXHtsFWEssPqkukZD"
 
 // Spin up the server
@@ -117,41 +125,3 @@ function sendGenericMessage(sender) {
     })
 }
 
-app.post('/webhook/', function (req, res) {
-    messaging_events = req.body.entry[0].messaging
-    for (i = 0; i < messaging_events.length; i++) {
-        event = req.body.entry[0].messaging[i]
-        sender = event.sender.id
-        if (event.message && event.message.text) {
-            text = event.message.text
-            if (text === 'Generic') {
-                sendGenericMessage(sender)
-                continue
-            }
-            sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-        }
-    }
-    res.sendStatus(200)
-})
-
-app.post('/webhook/', function (req, res) {
-    messaging_events = req.body.entry[0].messaging
-    for (i = 0; i < messaging_events.length; i++) {
-        event = req.body.entry[0].messaging[i]
-        sender = event.sender.id
-        if (event.message && event.message.text) {
-            text = event.message.text
-            if (text === 'Generic') {
-                sendGenericMessage(sender)
-                continue
-            }
-            sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-        }
-        if (event.postback) {
-            text = JSON.stringify(event.postback)
-            sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
-            continue
-        }
-    }
-    res.sendStatus(200)
-})
