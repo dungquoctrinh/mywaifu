@@ -43,11 +43,12 @@ app.post('/webhook/', function (req, res) {
 	    else if (text.toUpperCase() == 'YOU ARE GREAT') {
 		sendTextMessage(sender, "Yes. Thank you")
 	    }
-	    else if (text.toUpperCase() == "WHAT IS LOVE") 
+	    else if (text.toUpperCase() == "WHAT IS LOVE"){ 
                 sendTextMessage(sender, "Real love is not based on romance, candle light dinner and walks along the beach in fact it is based on compromise, care, respect and trust.")
             }  
-	    sendTextMessage(sender, "Hmm")
-
+	    else {
+	       sendTextMessage(sender, "Hmm")
+            }
         if (event.postback) {
             text = JSON.stringify(event.postback)
             sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
