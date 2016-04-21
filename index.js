@@ -37,7 +37,13 @@ app.post('/webhook/', function (req, res) {
                 sendGenericMessage(sender)
                 continue
             }
-            sendTextMessage(sender, "You will be fine. Everything will be ok")
+	    else if (text == 'I am sad') {
+		sendTextMessage(sender, "Cheer up and keep going")
+	    }
+	    else if (text == 'You are great') {
+		endTextMessage(sender, "Yep")
+		}
+            sendTextMessage(sender, "Hmm")
         }
         if (event.postback) {
             text = JSON.stringify(event.postback)
