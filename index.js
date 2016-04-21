@@ -41,7 +41,7 @@ app.post('/webhook/', function (req, res) {
 		sendTextMessage(sender, "Cheer up and keep going")
 	    }
 	    else if (text == 'You are great') {
-		endTextMessage(sender, "Yep")
+		sendTextMessage(sender, "Yep")
 		}
             sendTextMessage(sender, "Hmm")
         }
