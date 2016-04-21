@@ -46,9 +46,7 @@ app.post('/webhook/', function (req, res) {
 	    else if (text.toUpperCase() == "WHAT IS LOVE") 
                 sendTextMessage(sender, "Real love is not based on romance, candle light dinner and walks along the beach in fact it is based on compromise, care, respect and trust.")
             }  
-	    else {
-		sendTextMessage(sender, "Hmm")
-            }
+	    sendTextMessage(sender, "Hmm")
 
         if (event.postback) {
             text = JSON.stringify(event.postback)
