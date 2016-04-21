@@ -25,6 +25,7 @@ app.get('/webhook/', function (req, res) {
 })
 
 //end point
+//"Text received, echo: " + text.substring(0, 200)
 app.post('/webhook/', function (req, res) {
     messaging_events = req.body.entry[0].messaging
     for (i = 0; i < messaging_events.length; i++) {
@@ -32,7 +33,7 @@ app.post('/webhook/', function (req, res) {
         sender = event.sender.id
         if (event.message && event.message.text) {
             text = event.message.text
-            sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+            sendTextMessage(sender, "You are right")
         }
     }
     res.sendStatus(200)
