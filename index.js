@@ -48,16 +48,16 @@ app.post('/webhook/', function (req, res) {
                 sendTextMessage(sender, "Real love is not based on romance, candle light dinner and walks " +
                     "along the beach in fact it is based on compromise, care, respect and trust.")
             }
-            else if (text.toUpperCase().indexOf("CHU" > -1))
+            else if (text.toUpperCase().indexOf("CHU") > -1)
             {
-                sendTextMessage(sender, "Stop thinking about her. She hurted you. Work hard and destroy her. Period")
+                sendTextMessage(sender, "Stop thinking about her. She hurted you. Work hard and destroy her. Period");
             }
-            else if(text.toUpperCase().indexOf("ANDROID" > -1))
+            else if(text.toUpperCase().indexOf("ANDROID") > -1)
             {
-                sendTextMessage(sender, "Take note. Study later. 頑張ってください")
+                sendTextMessage(sender, "Take note. Study later. 頑張ってください");
             }
 	        else {
-	            sendTextMessage(sender, "Hmm")
+	            sendTextMessage(sender, "Hmm");
             }
 	    }
         if (event.postback) {
