@@ -28,7 +28,8 @@ app.get('/webhook/', function (req, res) {
 //"Text received, echo: " + text.substring(0, 200)
 app.post('/webhook/', function (req, res) {
     messaging_events = req.body.entry[0].messaging
-    for (i = 0; i < messaging_events.length; i++) {
+    for (i = 0; i < messaging_events.length; i++)
+    {
         event = req.body.entry[0].messaging[i]
         sender = event.sender.id
         if (event.message && event.message.text) {
@@ -37,23 +38,32 @@ app.post('/webhook/', function (req, res) {
                 sendGenericMessage(sender)
                 continue
             }
-	    else if (text.toUpperCase() == 'I AM SAD') {
-		sendTextMessage(sender, "Cheer up and keep going")
-	    }
-	    else if(text.toUpperCase() == 'YOU ARE GREAT') {
-		sendTextMessage(sender, "Yes. Thank you")
-	    }
-	    else if(text.toUpperCase() == "WHAT IS LOVE"){ 
-                sendTextMessage(sender, "Real love is not based on romance, candle light dinner and walks along the beach in fact it is based on compromise, care, respect and trust.")
-            }  
-	    else {
-	       sendTextMessage(sender, "Hmm")
+	        else if (text.toUpperCase() == 'I AM SAD') {
+		        sendTextMessage(sender, "Cheer up and keep going")
+	        }
+	        else if(text.toUpperCase() == 'YOU ARE GREAT') {
+		        sendTextMessage(sender, "Yes. Thank you")
+	        }
+	        else if(text.toUpperCase() == "WHAT IS LOVE"){
+                sendTextMessage(sender, "Real love is not based on romance, candle light dinner and walks " +
+                    "along the beach in fact it is based on compromise, care, respect and trust.")
             }
-	}
+            else if (text.toUpperCase().indexOf("CHU" > -1))
+            {
+                sendTextMessage(sender, "Stop thinking about her. She hurted you. Work hard and destroy her. Period")
+            }
+            else if(text.toUpperCase().indexOf("ANDROID" > -1))
+            {
+                sendTextMessage(sender, "Take note. Study later. 頑張ってください")
+            }
+	        else {
+	            sendTextMessage(sender, "Hmm")
+            }
+	    }
         if (event.postback) {
             text = JSON.stringify(event.postback)
             sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
-            continue
+                continue
         }
     }
     res.sendStatus(200)
