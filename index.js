@@ -52,7 +52,7 @@ app.post('/webhook/', function (req, res) {
             {
                 sendTextMessage(sender, "Stop thinking about her. She hurted you. Work hard and destroy her. Period");
             }
-            else if(text.toUpperCase().indexOf("ANDROID") > -1)
+            else if(text.toUpperCase().indexOf("ANDROID") > -1 || text.toUpperCase().indexOf("IMPORTANT") > -1)
             {
                 sendTextMessage(sender, "Take note. Study later. 頑張ってください");
             }
